@@ -1,0 +1,14 @@
+/bin/assets
+/bin/classes
+/bin/dexedLibs
+/bin/gen
+/bin/src
+/bin/libs
+/bin/res
+/bin/*.ap_
+/bin/*.xml
+/bin/*.dex
+/bin/*.cache
+/.settings/
+.classpath
+.project
