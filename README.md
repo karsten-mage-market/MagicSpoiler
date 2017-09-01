@@ -4,4 +4,6 @@ A simple Magic Spoiler App that downloads the newest spoilers from http://mythic
 
 <img src="MagicSpoiler.png" />
 
-Get it here: <a href="bin/MagicSpoiler.apk?raw=true">MagicSpoiler.apk</a>
+Get it here:
+
+<a href="bin/MagicSpoiler.apk">MagicSpoiler.apk</a>

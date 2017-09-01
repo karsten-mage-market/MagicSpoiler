@@ -7,15 +7,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-	final static String url = "http://maps.uesp.net/mwmap/zoom17/vvardenfell-%d-%d-17.jpg";
-
+/**
+ * Downloads an image.
+ * 
+ * @author broxp
+ */
+public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 	@Override
 	protected Bitmap doInBackground(String... params) {
-		String r = params[0];
+		String url = params[0];
 		try {
-			InputStream is = new URL(r).openStream();
-			return BitmapFactory.decodeStream(is);
+			InputStream stream = new URL(url).openStream();
+			return BitmapFactory.decodeStream(stream);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

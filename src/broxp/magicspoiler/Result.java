@@ -1,12 +1,15 @@
 package broxp.magicspoiler;
 
-class Result {
+/**
+ * Container for the result of an image list.
+ * 
+ * @author broxp
+ */
+public class Result {
 	public boolean error;
 	public Exception exception;
 	public String[] imgs;
 	public String html;
-
-	public int index;
 	public String title;
 
 	public Result(Exception ex) {
@@ -15,7 +18,6 @@ class Result {
 		title = "";
 		error = true;
 		exception = ex;
-		index = 0;
 	}
 
 	public Result(String html, String title, String[] imgs) {
@@ -24,6 +26,5 @@ class Result {
 		this.title = title;
 		error = false;
 		exception = null;
-		index = 0;
 	}
 }

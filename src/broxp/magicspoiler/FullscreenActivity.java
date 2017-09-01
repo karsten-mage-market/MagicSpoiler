@@ -11,6 +11,11 @@ import android.view.TouchDelegate;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+/**
+ * The main activity where user input and displaying images and text happens.
+ * 
+ * @author broxp
+ */
 public class FullscreenActivity extends Activity {
 	ImageView tile;
 	ViewGroup grid;
@@ -28,36 +33,38 @@ public class FullscreenActivity extends Activity {
 		Log.d("grid", "" + grid);
 		tile = (ImageView) findViewById(R.id.player);
 		Log.d("tile", "" + tile);
+
 		AsyncTask<Void, Void, Result> execute = new RetrieveMagicTask()
-				.execute(new Void[0]);
+				.execute((Void) null);
+
+		Exception exception;
 		try {
 			result = execute.get();
-			if (result.exception != null) {
-				Log.e("result.exception", result.exception + "");
-			}
+			exception = result.exception;
 		} catch (Exception e) {
-			Log.e("e", e + "");
+			exception = e;
 		}
-		map();
-		grid.setTouchDelegate(new TouchDelegate(rect(), grid) {
-			@Override
-			public boolean onTouchEvent(MotionEvent event) {
-				touch(event);
-				return super.onTouchEvent(event);
-			}
-		});
-	}
-
-	Rect rect() {
-		return new Rect(0, 0, tile.getWidth(), tile.getHeight());
+		if (result.exception != null) {
+			Log.e("exception", exception + "");
+			setTitle(exception.getClass().getSimpleName() + ": "
+					+ exception.getLocalizedMessage());
+		}
+		if (exception == null) {
+			showImage();
+			Rect rect = new Rect(0, 0, grid.getWidth(), grid.getHeight());
+			grid.setTouchDelegate(new TouchDelegate(rect, grid) {
+				@Override
+				public boolean onTouchEvent(MotionEvent event) {
+					touch(event);
+					return super.onTouchEvent(event);
+				}
+			});
+		}
 	}
 
 	void touch(MotionEvent event) {
-		// long dur = event.getEventTime() - event.getDownTime();
-		// Toast.makeText(getApplication(), "Time: " + dur, Toast.LENGTH_SHORT).show();
-		Rect r = rect();
-		float w = r.width();
-		float h = r.height();
+		float w = grid.getWidth();
+		float h = grid.getHeight();
 		float xMouse = event.getX();
 		float yMouse = event.getY();
 		float dx = xMouse - w / 2;
@@ -76,33 +83,27 @@ public class FullscreenActivity extends Activity {
 			y = max - 1;
 		}
 
-		int newX = (int) x;
-		int newY = (int) y;
-		if (newX != lastX || newY != lastY) {
-			map();
-			lastX = newX;
-			lastY = newY;
+		if (x != lastX || y != lastY) {
+			showImage();
+			lastX = x;
+			lastY = y;
 		}
 	}
 
-	void map() {
+	void showImage() {
 		setTitle("Loading # " + x + "...");
+		String current = result.imgs[x];
 		new DownloadImageTask() {
 			@Override
 			protected void onPostExecute(Bitmap result) {
 				tile.setImageBitmap(result);
 				status();
 			}
-		}.execute(result.imgs[x]);
+		}.execute(current);
 		status();
 	}
 
 	void status() {
 		setTitle((x + 1) + "/" + result.imgs.length + " " + result.title);
-	}
-
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
 	}
 }
