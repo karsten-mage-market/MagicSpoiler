@@ -9,6 +9,6 @@
 /bin/*.xml
 /bin/*.dex
 /bin/*.cache
-/.settings/
+/.settings
 .classpath
 .project
