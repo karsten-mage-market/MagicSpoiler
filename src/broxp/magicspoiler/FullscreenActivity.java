@@ -28,7 +28,7 @@ public class FullscreenActivity extends Activity {
 	int x, y;
 	int lastX, lastY;
 	Result result;
-	Button info; 
+	Button info;
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -129,9 +129,11 @@ public class FullscreenActivity extends Activity {
 
 	void handle(Exception exception) {
 		Log.e("exception", exception + "");
-		setTitle(exception.getClass().getSimpleName());
+		String string = exception.getClass().getSimpleName() + ": "
+				+ exception.getLocalizedMessage();
+		setTitle(string);
 		text.setVisibility(View.VISIBLE);
-		text.setText(exception.getLocalizedMessage());
+		text.setText(string);
 	}
 
 	void touch(MotionEvent event) {

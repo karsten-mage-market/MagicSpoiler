@@ -11,8 +11,8 @@
         a:id="@+id/info_button"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
-        a:layout_marginBottom="-40dp"
-        a:layout_marginTop="33dp"
+        a:layout_marginBottom="-30dp"
+        a:layout_marginTop="30dp"
         a:background="@android:color/transparent"
         a:text="@string/card_info" />
 
@@ -20,7 +20,7 @@
         a:id="@+id/info_text"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:background="@color/black_overlay"
+        a:background="@android:color/transparent"
         a:singleLine="false"
         a:visibility="gone" />
 

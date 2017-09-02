@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">MagicSpoiler</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="card_info">Card info</string>
 
 </resources>
