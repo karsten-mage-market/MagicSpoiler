@@ -1,0 +1,51 @@
+<GridLayout xmlns:a="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    a:id="@+id/grid"
+    a:layout_width="match_parent"
+    a:layout_height="match_parent"
+    a:background="#000000"
+    a:orientation="vertical"
+    tools:context="broxp.magicspoiler.FullscreenActivity" >
+
+
+    <TextView
+        a:id="@+id/title"
+        a:background="@android:color/transparent"
+        a:singleLine="false"
+        a:layout_marginTop="12dp"
+        a:layout_marginLeft="2dp"
+        a:visibility="visible"
+        a:textColor="@android:color/white"
+        a:text="Loading..."/>
+
+    <Button
+        a:id="@+id/info_button"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:layout_marginLeft="230dp"
+        a:layout_marginBottom="-30dp"
+        a:layout_marginTop="-32dp"
+        a:textColor="@android:color/white"
+        a:background="@android:color/transparent"
+        a:text="@string/card_info" />
+
+    <TextView
+        a:id="@+id/info_text"
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:textColor="@android:color/white"
+        a:background="@android:color/transparent"
+        a:singleLine="false"
+        a:visibility="gone" />
+
+    <ImageView
+        a:id="@+id/image"
+        a:layout_width="match_parent"
+        a:layout_height="match_parent"
+        a:background="@android:color/transparent"
+        a:contentDescription="@+id/image"
+        a:maxHeight="@android:dimen/thumbnail_height"
+        a:maxWidth="@android:dimen/thumbnail_width"
+        a:scaleType="fitCenter" />
+
+</GridLayout>
